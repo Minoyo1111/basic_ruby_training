@@ -39,3 +39,45 @@ end
 puts calc_age('1985/1/2')  # 印出 35
 puts calc_age('1997/8/28') # 印出 22
 
+
+def is_valid_company_no?(serial)
+  if serial.length == 8
+    serial = serial.split("")
+    total = serial.zip([1,2,1,2,1,2,4,1]).map{|x, y| x * y}
+    total = "%02d" % total
+    p total
+  else
+    "格式不符"
+  end
+end
+
+puts is_valid_company_no?('2453680')  # 印出「格式不符」字樣
+puts is_valid_company_no?('24536806') # 印出 true
+puts is_valid_company_no?('12222539') # 印出 false
+
+#龍哥方法
+def is_valid_company_no?(serial)
+
+  if serial.length != 8
+    "格式不符"
+  else
+    params = [1, 2, 1, 2, 1, 2, 4, 1]
+
+    checksum = 0
+    serial.split('').each_with_index do |x, index|
+      checksum += (x.to_i * params[index]).divmod(10).sum
+    end
+
+    if (checksum % 10 == 0) || (serial[6] && (checksum + 1) % 10 == 0)
+      true
+    else
+      false
+    end
+  end
+end
+
+
+
+puts is_valid_company_no?('2453680')  # 印出「格式不符」字樣
+puts is_valid_company_no?('24536806') # 印出 true
+puts is_valid_company_no?('12222539') # 印出 false
