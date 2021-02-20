@@ -106,3 +106,73 @@ end
 puts count_sheep(1)  # 印出 1 sheep...
 puts count_sheep(2)  # 印出 1 sheep...2 sheep...
 puts count_sheep(3)  # 印出 1 sheep...2 sheep...3 sheep...
+
+def century(year)
+  if year % 100 == 0
+    return year / 100
+  else 
+    return (year /100) + 1
+  end
+end
+
+puts century(1705)  # 18 世紀
+puts century(1900)  # 19 世紀
+puts century(1601)  # 17 世紀
+puts century(2000)  # 20 世紀
+
+#龍哥版本
+def century(year)
+  "#{(year / 100.0).ceil} 世紀"
+end
+
+puts century(1705)  # 18 世紀
+puts century(1900)  # 19 世紀
+puts century(1601)  # 17 世紀
+puts century(2000)  # 20 世紀
+
+def solution(sentence)
+  sentence.split(" ").reverse.join(" ")
+end
+
+puts solution("The greatest victory is that which requires no battle") 
+# 印出 battle no requires which that is victory greatest The
+
+#龍哥版本
+def solution(sentence)
+  sentence.split.reverse.join(" ")
+end
+
+puts solution("The greatest victory is that which requires no battle") 
+# 印出 battle no requires which that is victory greatest The
+
+
+def squareSum(numbers)
+  if numbers.is_a?(Array)
+    numbers.map {|num| num * num }.sum
+  else
+    numbers ** 2
+  end  
+end
+
+puts squareSum(2)          # 印出 4
+puts squareSum([1, 2, 2])  # 印出 9
+
+#龍哥版本
+def squareSum(numbers)
+  Array(numbers).reduce(0){|sum, x| sum += x ** 2}
+end
+
+puts squareSum(2)          # 印出 4
+puts squareSum([1, 2, 2])  # 印出 9
+
+#龍哥版本
+def remove_char(s)
+  s[1..-2]
+end
+
+p remove_char('eloquent')  # "loquen"
+p remove_char('country')   # "ountr"
+p remove_char('person')    # "erso"
+p remove_char('place')     # "lac"
+p remove_char('ok')        # ""
+
