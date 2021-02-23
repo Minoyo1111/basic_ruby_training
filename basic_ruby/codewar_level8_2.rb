@@ -110,3 +110,58 @@ def give_me_five
 end  
 
 puts give_me_five  # 5
+
+
+def compute
+  if block_given?
+    yield
+  else
+    "Do not compute"
+  end
+end
+
+puts compute { "Block" }  # 印出 Block
+puts compute              # 印出 Do not compute
+
+
+class Ghost
+  def color
+    ["white", "yellow", "purple", "red"].sample
+  end
+end
+
+ghost = Ghost.new
+puts ghost.color          # 隨機印出 white, yellow, purple, red 這四種顏色的字串
+
+
+class Array
+  def second
+    self[1]
+  end
+end
+
+
+
+p [1,2,3].second # 2
+p [].second       # nil
+p [1].second      # nil
+
+
+class Cat
+  def initialize(name)
+    @name = name
+  end
+
+  def speak
+    puts "#{@name} meows."
+  end
+end
+
+kitty = Cat.new('Mr Whiskers')
+kitty.speak   # 印出 Mr Whiskers meows.
+
+nancy = Cat.new('Lamp')
+nancy.speak   # 印出 Lamp meows.
+
+sherly = Cat.new('$$Money Bags$$')
+sherly.speak  # 印出 $$Money Bags$$ meows.
