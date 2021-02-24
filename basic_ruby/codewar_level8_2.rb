@@ -165,3 +165,63 @@ nancy.speak   # 印出 Lamp meows.
 
 sherly = Cat.new('$$Money Bags$$')
 sherly.speak  # 印出 $$Money Bags$$ meows.
+
+
+class Ball
+  def initialize(ball = "regular")
+    @ball = ball
+  end
+  def ball_type
+    @ball
+  end
+end
+
+ball1 = Ball.new
+puts ball1.ball_type   # 印出 regular
+
+ball2 = Ball.new("super")
+puts ball2.ball_type   # 印出 super
+
+#龍哥版本
+class Ball
+  attr_reader :ball_type
+  def initialize(ball_type = "regular")
+    @ball_type = ball_type
+  end
+end
+
+ball1 = Ball.new
+puts ball1.ball_type   # 印出 regular
+
+ball2 = Ball.new("super")
+puts ball2.ball_type   # 印出 super
+
+def format_money(amount)
+  amount.round(3).to_f
+end
+
+puts format_money(39.99)  # 印出 $39.99
+puts format_money(39.90)  # 印出 $39.90
+puts format_money(39)     # 印出 $39.00
+
+#龍哥版本
+def format_money(amount)
+   "$#{"%.2f" % amount}"
+end
+
+puts format_money(39.99)  # 印出 $39.99
+puts format_money(39.90)  # 印出 $39.90
+puts format_money(39)     # 印出 $39.00
+
+
+
+#請計算在幾年後，爸爸的年紀是兒子的二倍？
+def twice_as_old(father, son)
+  father - son * 2
+end
+
+puts twice_as_old(36,7)   # 22
+puts twice_as_old(65,30)  # 5
+puts twice_as_old(42,21)  # 0
+puts twice_as_old(22,1)   # 20
+puts twice_as_old(29,0)   # 29
