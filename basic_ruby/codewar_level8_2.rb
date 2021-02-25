@@ -225,3 +225,84 @@ puts twice_as_old(65,30)  # 5
 puts twice_as_old(42,21)  # 0
 puts twice_as_old(22,1)   # 20
 puts twice_as_old(29,0)   # 29
+
+# 「二的 N 次方」，當 n = 0，印出 2 的 0 次方；當 n = 2，印出 2 的 0 次方、2 的 1 次方、2 的 2 次房，以此類推。完成以下實作：
+
+def powers_of_two(n)
+  (0..n).to_a.map {|x| 2 ** x }
+end
+
+p powers_of_two(0)   # [1]
+p powers_of_two(1)   # [1, 2]
+p powers_of_two(4)   # [1, 2, 4, 8, 16]
+
+#龍哥方法
+def powers_of_two(n)
+  (0..n).map {|x| 2 ** x }
+end
+
+def rock_paper_scissor(p1, p2)
+  if p1 == p2
+    " Draw!"
+  elsif p1 == 'rock'
+    if p2 == 'scissors'
+      "Player 1 won!"
+    else
+      "Player 2 won!"
+    end
+  elsif p1 == 'paper'
+    if p2 == 'rock'
+      "Player 1 won!"
+    else
+      "Player 2 won!"
+    end
+  else
+    "please play again"
+  end
+end
+
+puts rock_paper_scissor('rock', 'scissors')      # 印出 Player 1 won!
+puts rock_paper_scissor('paper', 'rock')         # 印出 Player 1 won!
+puts rock_paper_scissor('paper', 'scissors')     # 印出 Player 2 won!
+puts rock_paper_scissor('rock', 'paper')         # 印出 Player 2 won!
+puts rock_paper_scissor('rock', 'rock')          # 印出 Draw!
+puts rock_paper_scissor('scissors', 'scissors')  # 印出 Draw!
+
+#龍哥版本
+def rock_paper_scissor(p1, p2)
+  #做一個勝負表單
+  win_table = {'rock' => 'scissors', 'scissors' => 'paper', 'paper' => 'rock'}
+  if p1 == p2
+    "Draw!"
+  else
+    if win_table.has_key?(p1) && win_table[p1] == p2
+      "Player 1 won!"
+    else
+      "Player 2 won!"
+    end
+  end
+end
+
+puts rock_paper_scissor('rock', 'scissors')      # 印出 Player 1 won!
+puts rock_paper_scissor('paper', 'rock')         # 印出 Player 1 won!
+puts rock_paper_scissor('paper', 'scissors')     # 印出 Player 2 won!
+puts rock_paper_scissor('rock', 'paper')         # 印出 Player 2 won!
+puts rock_paper_scissor('rock', 'rock')          # 印出 Draw!
+puts rock_paper_scissor('scissors', 'scissors')  # 印出 Draw!
+
+# last = 上次日期，today = 今天日期，cycle_length = 週期
+require "date"
+def is_period_late?(last, today, cycle_length)
+  Date.parse(today) - Date.parse(last) > cycle_length
+end
+
+puts is_period_late?('2016/6/13', '2016/7/16', 35) # false
+puts is_period_late?('2016/6/13', '2016/7/16', 28) # true
+puts is_period_late?('2016/6/13', '2016/7/16', 35) # false
+puts is_period_late?('2016/6/13', '2016/6/29', 28) # false
+puts is_period_late?('2016/7/12', '2016/8/9', 28)  # false
+puts is_period_late?('2016/7/12', '2016/8/10', 28) # true
+puts is_period_late?('2016/7/1', '2016/8/1', 30)   # true
+puts is_period_late?('2016/6/1', '2016/6/30', 30)  # false
+puts is_period_late?('2016/1/1', '2016/1/31', 30)  # false
+puts is_period_late?('2016/1/1', '2016/2/1', 30)   # true

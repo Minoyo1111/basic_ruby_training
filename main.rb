@@ -1,7 +1,16 @@
-def format_money(amount)
-  "$#{"%.2f" % amount}"
+# last = 上次日期，today = 今天日期，cycle_length = 週期
+require "date"
+def is_period_late?(last, today, cycle_length)
+  Date.parse(today) - Date.parse(last) > cycle_length
 end
 
-puts format_money(39.99)  # 印出 $39.99
-puts format_money(39.90)  # 印出 $39.90
-puts format_money(39)     # 印出 $39.00
+puts is_period_late?('2016/6/13', '2016/7/16', 35) # false
+puts is_period_late?('2016/6/13', '2016/7/16', 28) # true
+puts is_period_late?('2016/6/13', '2016/7/16', 35) # false
+puts is_period_late?('2016/6/13', '2016/6/29', 28) # false
+puts is_period_late?('2016/7/12', '2016/8/9', 28)  # false
+puts is_period_late?('2016/7/12', '2016/8/10', 28) # true
+puts is_period_late?('2016/7/1', '2016/8/1', 30)   # true
+puts is_period_late?('2016/6/1', '2016/6/30', 30)  # false
+puts is_period_late?('2016/1/1', '2016/1/31', 30)  # false
+puts is_period_late?('2016/1/1', '2016/2/1', 30)   # true
